@@ -1,0 +1,46 @@
+# Backend
+/vendor/
+/node_modules/
+/storage/framework/views/*.php
+/storage/logs/*.log
+/.env
+/.env.backup
+/.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+
+# Flutter
+examflow_mobile/.dart_tool/
+examflow_mobile/.packages
+examflow_mobile/.pub/
+examflow_mobile/.pub-cache/
+examflow_mobile/build/
+examflow_mobile/.flutter-plugins
+examflow_mobile/.flutter-plugins-dependencies
+examflow_mobile/pubspec.lock
+examflow_mobile/.metadata
+examflow_mobile/android/.gradle/
+examflow_mobile/android/app/build/
+examflow_mobile/android/local.properties
+examflow_mobile/android/key.properties
+examflow_mobile/ios/Pods/
+examflow_mobile/ios/.symlinks/
+examflow_mobile/ios/Flutter/Flutter.framework
+examflow_mobile/ios/Flutter/Flutter.podspec
+examflow_mobile/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+examflow_mobile/linux/flutter/ephemeral/
+examflow_mobile/windows/flutter/ephemular/
+examflow_mobile/.idea/
+examflow_mobile/.vscode/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

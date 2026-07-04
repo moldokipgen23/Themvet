@@ -1,0 +1,114 @@
+13_ExamFlow_Claude_Code_Master_Instructions.txt
+
+ExamFlow Claude Code Master Instructions
+
+1. Purpose
+This document is the master instruction file for Claude Code or any similar AI developer tool. It explains how to build ExamFlow using the other files in this package.
+
+2. Project Summary
+ExamFlow is a community-powered, AI-ready exam preparation platform for Indian competitive exams. It combines structured learning content, question practice, mock tests, community contributions, analytics, and AI assistance.
+
+3. Recommended Reading Order
+Claude should read the files in this order:
+1. 00_ExamFlow_README_Index.txt
+2. 01_ExamFlow_Business_Plan.txt
+3. 02_ExamFlow_Product_Spec.txt
+4. 03_ExamFlow_System_Architecture.txt
+5. 04_ExamFlow_Database_Schema.txt
+6. 05_ExamFlow_API_Spec.txt
+7. 06_ExamFlow_Flutter_Architecture.txt
+8. 07_ExamFlow_Admin_Panel_Spec.txt
+9. 08_ExamFlow_Phase_1_MVP_Prompt.txt
+10. 09_ExamFlow_Phase_2_Community_Prompt.txt
+11. 10_ExamFlow_Phase_3_Analytics_Prompt.txt
+12. 11_ExamFlow_Phase_4_AI_Prompt.txt
+13. 12_ExamFlow_Phase_5_AI_Tutor_Prompt.txt
+
+4. Build Philosophy
+Build in phases.
+Do not jump to AI before the core content and test system are stable.
+Do not overcomplicate early architecture.
+Keep the product modular, maintainable, and reviewable.
+
+5. Core Priority Order
+Priority order:
+1. Business model clarity.
+2. Content quality.
+3. Core learning flow.
+4. Practice and tests.
+5. Progress and analytics.
+6. Community expansion.
+7. AI assistance.
+8. AI tutor.
+
+6. Rules for Implementation
+- Build one phase at a time.
+- Do not skip database and API foundations.
+- Keep file and module names simple.
+- Avoid unnecessary abstraction.
+- Keep UI clean and exam-focused.
+- Prefer reliability over fancy features.
+- Respect moderation and safety rules at every stage.
+
+7. Claude Work Style
+When coding or generating implementation details:
+- Follow the exact phase scope.
+- Do not add large unrelated features.
+- Ask for clarification only if absolutely necessary.
+- Keep code aligned with the architecture.
+- Use consistent naming and structure.
+- Prefer practical, production-ready decisions.
+
+8. Backend Guidance
+The backend should:
+- Expose clean REST endpoints.
+- Use role-based access control.
+- Store content and progress safely.
+- Keep analytics and AI separate from core content flows.
+- Use queues for heavy operations.
+
+9. Flutter Guidance
+The Flutter app should:
+- Stay modular by feature.
+- Use a consistent state management strategy.
+- Prioritize study usability.
+- Support offline reading where practical.
+- Avoid bloated UI trees.
+
+10. Admin Guidance
+The admin panel should:
+- Be practical for daily use.
+- Focus on content and moderation workflows.
+- Provide clear tables and dashboards.
+- Include role and permission controls.
+- Keep audit logs for sensitive operations.
+
+11. AI Guidance
+AI should only be added when:
+- Content is stable.
+- Analytics are useful.
+- Safety rules are in place.
+- Grounding data is available.
+
+AI should always be:
+- Controlled.
+- Logged.
+- Filtered.
+- Useful.
+- Education-focused.
+
+12. Quality Bar
+The output should be:
+- Easy to understand.
+- Easy to maintain.
+- Easy to extend later.
+- Safe to run in production.
+- Good enough for a real student product.
+
+13. Handoff Reminder
+If a file conflicts with another file, follow the more specific phase file for implementation details and use this master file only as the top-level guide.
+
+14. Final Instruction
+Build ExamFlow as a serious educational product with strong structure, practical workflows, and long-term scalability.
+
+End of file.

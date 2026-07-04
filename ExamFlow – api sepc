@@ -1,0 +1,270 @@
+05_ExamFlow_API_Spec.txt
+
+ExamFlow API Specification
+
+1. API Goals
+The API should support the mobile app, admin panel, moderator tools, community workflows, analytics collection, and future AI features.
+
+The design should be versioned, consistent, secure, and easy to extend.
+
+2. API Principles
+- Use RESTful design for core endpoints.
+- Version all public endpoints.
+- Keep request and response formats consistent.
+- Use role-based access control.
+- Validate all inputs.
+- Return clear error messages.
+- Separate public and protected endpoints.
+- Use pagination, filtering, and sorting where needed.
+
+3. Base URL Pattern
+- /api/v1/...
+
+4. Standard Response Format
+Success response:
+{
+  "success": true,
+  "message": "Request completed successfully",
+  "data": {}
+}
+
+Error response:
+{
+  "success": false,
+  "message": "Something went wrong",
+  "errors": {}
+}
+
+5. Authentication Endpoints
+POST /api/v1/auth/register
+POST /api/v1/auth/login
+POST /api/v1/auth/logout
+POST /api/v1/auth/refresh
+POST /api/v1/auth/forgot-password
+POST /api/v1/auth/reset-password
+GET /api/v1/auth/me
+
+6. User Endpoints
+GET /api/v1/user/profile
+PUT /api/v1/user/profile
+GET /api/v1/user/progress
+GET /api/v1/user/bookmarks
+GET /api/v1/user/notes
+GET /api/v1/user/notifications
+
+7. Exam Endpoints
+GET /api/v1/exams
+GET /api/v1/exams/{examId}
+GET /api/v1/exams/{examId}/subjects
+GET /api/v1/exams/{examId}/syllabus
+
+8. Subject Endpoints
+GET /api/v1/subjects/{subjectId}
+GET /api/v1/subjects/{subjectId}/chapters
+GET /api/v1/subjects/{subjectId}/topics
+
+9. Chapter Endpoints
+GET /api/v1/chapters/{chapterId}
+GET /api/v1/chapters/{chapterId}/topics
+
+10. Topic Endpoints
+GET /api/v1/topics/{topicId}
+GET /api/v1/topics/{topicId}/contents
+GET /api/v1/topics/{topicId}/questions
+GET /api/v1/topics/{topicId}/progress
+
+11. Content Endpoints
+GET /api/v1/contents/{contentId}
+GET /api/v1/contents/{contentId}/related
+POST /api/v1/contents/{contentId}/bookmark
+DELETE /api/v1/contents/{contentId}/bookmark
+
+12. Question Endpoints
+GET /api/v1/questions/{questionId}
+GET /api/v1/questions/search
+GET /api/v1/questions/random
+GET /api/v1/questions/by-topic/{topicId}
+
+13. Test Endpoints
+GET /api/v1/tests
+GET /api/v1/tests/{testId}
+POST /api/v1/tests/{testId}/start
+POST /api/v1/tests/{testId}/submit
+GET /api/v1/tests/{testId}/result
+GET /api/v1/tests/{testId}/review
+
+14. Practice Endpoints
+POST /api/v1/practice/start
+POST /api/v1/practice/submit
+GET /api/v1/practice/history
+GET /api/v1/practice/weak-topics
+
+15. Progress Endpoints
+GET /api/v1/progress/summary
+GET /api/v1/progress/topics
+GET /api/v1/progress/tests
+GET /api/v1/progress/streaks
+
+16. Bookmark Endpoints
+GET /api/v1/bookmarks
+POST /api/v1/bookmarks
+DELETE /api/v1/bookmarks/{bookmarkId}
+
+17. Notes Endpoints
+GET /api/v1/notes
+POST /api/v1/notes
+PUT /api/v1/notes/{noteId}
+DELETE /api/v1/notes/{noteId}
+
+18. Community Endpoints
+GET /api/v1/community/feed
+POST /api/v1/community/submissions
+GET /api/v1/community/submissions/{submissionId}
+GET /api/v1/community/my-submissions
+
+19. Moderation Endpoints
+GET /api/v1/moderation/queue
+POST /api/v1/moderation/submissions/{submissionId}/approve
+POST /api/v1/moderation/submissions/{submissionId}/reject
+POST /api/v1/moderation/submissions/{submissionId}/edit
+
+20. Search Endpoints
+GET /api/v1/search?q={query}
+GET /api/v1/search/topics?q={query}
+GET /api/v1/search/questions?q={query}
+GET /api/v1/search/content?q={query}
+
+21. Notification Endpoints
+GET /api/v1/notifications
+POST /api/v1/notifications/read
+POST /api/v1/notifications/read-all
+
+22. Analytics Endpoints
+GET /api/v1/analytics/overview
+GET /api/v1/analytics/activity
+GET /api/v1/analytics/performance
+GET /api/v1/analytics/content
+
+23. AI Endpoints
+POST /api/v1/ai/chat
+POST /api/v1/ai/explain-question
+POST /api/v1/ai/summarize-content
+POST /api/v1/ai/generate-revision-plan
+
+24. Admin Endpoints
+GET /api/v1/admin/dashboard
+GET /api/v1/admin/users
+GET /api/v1/admin/content
+GET /api/v1/admin/questions
+GET /api/v1/admin/tests
+GET /api/v1/admin/submissions
+GET /api/v1/admin/reports
+
+25. Request Validation Rules
+- Require authentication for protected endpoints.
+- Validate IDs as integers or UUIDs depending on implementation.
+- Validate pagination values.
+- Validate topic, chapter, and exam relations.
+- Reject malformed or unsupported request payloads.
+
+26. Pagination Format
+Recommended query params:
+- page
+- limit
+- sort
+- order
+
+Example:
+GET /api/v1/questions?page=1&limit=20&sort=created_at&order=desc
+
+27. Filtering Support
+Common filters:
+- exam_id.
+- subject_id.
+- chapter_id.
+- topic_id.
+- difficulty_level.
+- status.
+- language.
+- search query.
+
+28. Error Codes
+Use consistent HTTP status codes:
+- 200 for success.
+- 201 for created.
+- 400 for validation errors.
+- 401 for unauthorized.
+- 403 for forbidden.
+- 404 for not found.
+- 422 for business rule validation.
+- 429 for rate limit exceeded.
+- 500 for server errors.
+
+29. Security Requirements
+- Use secure token authentication.
+- Protect all admin and moderator routes.
+- Rate-limit login and AI endpoints.
+- Sanitize input text.
+- Prevent IDOR issues.
+- Log sensitive actions.
+- Apply file upload restrictions.
+
+30. Caching Strategy
+Cache:
+- Exam lists.
+- Syllabus trees.
+- Popular content.
+- Frequently searched terms.
+- Test templates.
+- Analytics summaries.
+
+31. Queue Jobs
+Use background jobs for:
+- Email and push notifications.
+- Search indexing.
+- Analytics aggregation.
+- AI requests where needed.
+- Content moderation tasks.
+
+32. Webhooks and Integrations
+If future integrations are needed, support:
+- Payment webhooks.
+- SMS provider callbacks.
+- Email delivery status.
+- AI provider callbacks if applicable.
+
+33. API Versioning Strategy
+- Keep /api/v1 stable.
+- Introduce /api/v2 only when breaking changes are needed.
+- Avoid breaking existing mobile clients.
+- Maintain backward compatibility during transition periods.
+
+34. Example Resource Shape: Question
+{
+  "id": 101,
+  "question_text": "Which of the following is ...?",
+  "options": ["A", "B", "C", "D"],
+  "correct_option": "B",
+  "explanation": "Because ...",
+  "difficulty_level": "medium",
+  "topic": {
+    "id": 15,
+    "name": "Indian Polity"
+  }
+}
+
+35. Example Resource Shape: Test Result
+{
+  "test_id": 55,
+  "score": 72,
+  "percentage": 72.0,
+  "correct_answers": 36,
+  "wrong_answers": 8,
+  "skipped_questions": 6,
+  "weak_topics": []
+}
+
+36. API Summary
+The API should stay simple, versioned, secure, and modular so the mobile app and admin tools can grow without major rewrites.
+
+End of file.

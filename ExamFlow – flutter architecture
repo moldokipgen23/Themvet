@@ -1,0 +1,273 @@
+06_ExamFlow_Flutter_Architecture.txt
+
+ExamFlow Flutter Architecture
+
+1. Frontend Goals
+The Flutter app should provide a fast, polished, mobile-first learning experience for exam preparation. It must support reading, practice, revision, test attempts, progress tracking, and future AI tools.
+
+The UI should feel lightweight, focused, and easy to use on low-cost Android devices.
+
+2. App Principles
+- Mobile-first.
+- Fast startup time.
+- Clean textbook-style reading experience.
+- Minimal distractions.
+- Offline-friendly where possible.
+- Easy navigation between learning and practice.
+- Strong separation of UI, state, and data layers.
+
+3. Recommended Flutter Stack
+- Flutter latest stable version.
+- Dart.
+- State management: Riverpod, Bloc, or Provider.
+- Routing: go_router or equivalent.
+- HTTP client: Dio or equivalent.
+- Local storage: Hive, SharedPreferences, or SQLite.
+- Rich text rendering: custom text widgets or markdown support if required.
+- File/media handling for images and diagrams.
+
+4. App Structure
+Recommended folder structure:
+- lib/
+- lib/app/
+- lib/core/
+- lib/features/
+- lib/features/auth/
+- lib/features/home/
+- lib/features/learn/
+- lib/features/practice/
+- lib/features/revision/
+- lib/features/progress/
+- lib/features/bookmarks/
+- lib/features/community/
+- lib/features/profile/
+- lib/features/notifications/
+- lib/features/search/
+- lib/features/ai/
+- lib/shared/
+
+5. Layered Frontend Architecture
+A. Presentation layer
+Contains screens, widgets, and UI state.
+
+B. Domain layer
+Contains business entities, use cases, and rules.
+
+C. Data layer
+Contains API services, repositories, DTOs, and local cache handlers.
+
+D. Core layer
+Contains constants, theme, utilities, error handling, and base classes.
+
+6. Recommended Feature Modules
+- Authentication.
+- Onboarding.
+- Home dashboard.
+- Learn module.
+- Practice module.
+- Test engine UI.
+- Revision module.
+- Search.
+- Bookmarks.
+- Notes.
+- Community feed.
+- Notifications.
+- Profile.
+- Settings.
+- Analytics dashboard.
+- AI assistant views.
+
+7. Screen List
+Core screens:
+- Splash screen.
+- Login screen.
+- Signup screen.
+- OTP or password recovery screen.
+- Onboarding screen.
+- Exam selection screen.
+- Home dashboard.
+- Subject list screen.
+- Chapter list screen.
+- Topic detail screen.
+- Content reader screen.
+- Question practice screen.
+- Test setup screen.
+- Test player screen.
+- Test result screen.
+- Revision screen.
+- Bookmark screen.
+- Notes screen.
+- Community screen.
+- Search results screen.
+- Notifications screen.
+- Profile screen.
+- Settings screen.
+
+8. Navigation Model
+Primary navigation:
+- Home.
+- Learn.
+- Practice.
+- Revision.
+- Profile.
+
+Secondary navigation:
+- Search.
+- Bookmarks.
+- Community.
+- Notifications.
+
+Use deep linking for:
+- Topic pages.
+- Question pages.
+- Test result pages.
+- Shared content links.
+
+9. State Management Strategy
+Use one consistent approach across the app.
+Recommended pattern:
+- UI widgets listen to state controllers.
+- Controllers call repositories.
+- Repositories fetch from API or cache.
+- Domain models remain separate from API DTOs.
+
+State categories:
+- Auth state.
+- User profile state.
+- Content state.
+- Test state.
+- Practice state.
+- Progress state.
+- Search state.
+- AI state.
+- Community state.
+
+10. Data Flow
+1. UI requests data.
+2. Controller invokes repository.
+3. Repository checks local cache or API.
+4. API returns response.
+5. Repository maps response to models.
+6. State updates and UI rebuilds.
+
+11. Offline Support
+The app should cache:
+- Recently opened topics.
+- Bookmarks.
+- Saved notes.
+- Last viewed test results.
+- Some downloaded revision content.
+
+Offline mode should support:
+- Reading cached study content.
+- Viewing saved items.
+- Drafting notes.
+- Queueing sync actions for later.
+
+12. Performance Guidelines
+- Use lazy loading for long lists.
+- Paginate large datasets.
+- Cache repeated API responses.
+- Avoid heavy widget trees.
+- Optimize images and diagrams.
+- Minimize rebuilds in reading screens.
+- Preload next likely content where useful.
+
+13. Design System
+Recommended design traits:
+- Strong typography.
+- High contrast.
+- Clear spacing.
+- Simple icons.
+- Topic progress indicators.
+- Low visual clutter.
+- Consistent components for cards, buttons, and chips.
+
+14. Theme Requirements
+- Light mode as default.
+- Dark mode support.
+- Readability-focused font sizes.
+- Exam-focused color palette.
+- Accessible contrast ratios.
+- Future support for language-specific typography.
+
+15. Reusable UI Components
+- Subject card.
+- Chapter card.
+- Topic card.
+- Progress ring.
+- Question option widget.
+- Explanation panel.
+- Tag chips.
+- Bookmark button.
+- Test timer widget.
+- Score summary card.
+- Weak-topic chip.
+- Community post card.
+
+16. Error Handling
+- Show user-friendly messages.
+- Retry failed requests.
+- Preserve unsent drafts locally.
+- Handle slow internet gracefully.
+- Handle expired sessions cleanly.
+- Provide empty-state and loading-state UI for every major screen.
+
+17. Authentication Flow
+- User logs in or signs up.
+- Token is stored securely.
+- App loads profile and exam settings.
+- Session refresh happens silently.
+- If auth fails, user is redirected to login.
+
+18. API Integration
+The Flutter app should consume the backend through repositories and service classes.
+- Use typed models.
+- Centralize endpoint paths.
+- Separate request and response mapping.
+- Add interceptors for auth and logging.
+
+19. Analytics Integration
+Track key events:
+- app_opened.
+- subject_viewed.
+- topic_viewed.
+- question_answered.
+- test_started.
+- test_submitted.
+- bookmark_added.
+- note_created.
+- community_post_created.
+
+20. Asset and Media Support
+The app should support:
+- Images.
+- Diagrams.
+- Math or formula rendering if needed.
+- Audio later if required.
+- Video later if required.
+
+21. Testing Strategy
+- Unit tests for business logic.
+- Widget tests for important UI.
+- Integration tests for login, reading, and test submission flows.
+- Snapshot testing for core screens if possible.
+
+22. Build Environments
+- Development.
+- Staging.
+- Production.
+
+Use environment configs for:
+- API base URL.
+- Feature flags.
+- Analytics keys.
+- AI service flags.
+
+23. Architecture Recommendation
+Start with a modular Flutter structure with clear feature boundaries so the app can scale without becoming hard to maintain.
+
+24. Flutter Summary
+The Flutter app should be organized around modular features, strict separation of concerns, and a clean study-first experience that can later support AI and community features.
+
+End of file.

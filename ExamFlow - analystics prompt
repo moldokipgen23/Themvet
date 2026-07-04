@@ -1,0 +1,204 @@
+10_ExamFlow_Phase_3_Analytics_Prompt.txt
+
+ExamFlow Phase 3 Analytics Build Prompt
+
+1. Phase Objective
+Build a strong analytics layer that helps students understand progress and helps the platform understand engagement, learning effectiveness, and weak areas.
+
+The analytics layer should improve retention, study quality, and operational visibility.
+
+2. Phase 3 Product Goal
+Add data-driven insights for users, admins, and future personalization systems.
+
+3. Phase 3 Scope
+Include:
+- Student progress dashboards.
+- Subject and topic performance analytics.
+- Test result analytics.
+- Weak-area detection.
+- Study streak tracking.
+- Content engagement analytics.
+- Admin reporting views.
+- Event tracking foundation.
+- Basic aggregated metrics.
+
+4. What To Avoid
+Do not build:
+- Complex AI recommendations yet.
+- Real-time machine learning scoring.
+- Overly advanced dashboards that slow the app.
+- Unnecessary charts with little value.
+- Heavy data warehouse complexity.
+
+5. Student Analytics Features
+Students should be able to see:
+- Overall progress.
+- Completed topics.
+- Pending topics.
+- Strong and weak subjects.
+- Test scores over time.
+- Accuracy trends.
+- Study streaks.
+- Time spent per test or practice session.
+- Most revisited topics.
+
+6. Student Dashboard Requirements
+The student dashboard should show:
+- Progress percentage.
+- Weekly study activity.
+- Performance trend.
+- Weak topics.
+- Recent test results.
+- Revision reminders.
+- Bookmarked content counts.
+
+7. Test Analytics Features
+For each test or practice session, show:
+- Score.
+- Percentage.
+- Correct answers.
+- Wrong answers.
+- Skipped questions.
+- Time taken.
+- Time per question.
+- Weak topic mapping.
+- Accuracy by subject or chapter.
+
+8. Topic-Level Analytics
+For each topic, show:
+- Questions attempted.
+- Accuracy rate.
+- Average time spent.
+- Revision frequency.
+- Completion status.
+- Difficulty impact.
+
+9. Study Streaks and Habit Tracking
+Track:
+- Daily study streak.
+- Weekly study frequency.
+- Consecutive revision days.
+- Test attempt rhythm.
+- Content engagement consistency.
+
+10. Admin Analytics Features
+Admin should be able to view:
+- Total users.
+- Active users.
+- New registrations.
+- Daily and weekly engagement.
+- Test completion volume.
+- Content engagement.
+- Most difficult topics.
+- Most viewed content.
+- Contributor activity if Phase 2 exists.
+- Drop-off points in the product funnel.
+
+11. Event Tracking Layer
+Track events such as:
+- app_opened.
+- subject_opened.
+- topic_opened.
+- content_read.
+- question_answered.
+- test_started.
+- test_submitted.
+- bookmark_added.
+- note_created.
+- community_submission_created.
+
+12. Event Storage Strategy
+Use a raw events table or equivalent event pipeline to store user actions before aggregation.
+
+13. Aggregated Metrics Strategy
+Create daily or weekly summary records for:
+- User activity.
+- Content engagement.
+- Test performance.
+- Progress completion.
+- Retention and streaks.
+
+14. Analytics Data Model Needs
+Support:
+- User-level summaries.
+- Topic-level summaries.
+- Exam-level summaries.
+- Test-level summaries.
+- Content-level summaries.
+- Admin-level summaries.
+
+15. Dashboard UX Requirements
+- Keep charts simple and readable.
+- Use short labels.
+- Use mobile-friendly cards.
+- Prioritize actionable insights.
+- Avoid clutter.
+- Allow drill-down from summary to detail.
+
+16. Visualization Types
+Recommended charts:
+- Line charts for progress over time.
+- Bar charts for topic scores.
+- Pie or donut charts for completion breakdown.
+- Cards for summary metrics.
+- Tables for top weak topics or top content.
+
+17. Performance Requirements
+- Precompute analytics where possible.
+- Cache dashboard responses.
+- Avoid loading too much data at once.
+- Paginate long lists.
+- Aggregate heavy queries in background jobs.
+
+18. Backend Requirements
+Implement:
+- Event ingestion.
+- Metric aggregation jobs.
+- Student analytics API.
+- Admin analytics API.
+- Topic performance queries.
+- Test result summaries.
+- Streak calculation logic.
+
+19. Flutter Requirements
+Implement:
+- Analytics dashboard screens.
+- Performance trend cards.
+- Subject breakdown widgets.
+- Weak-topic widgets.
+- Test result charts.
+- Admin analytics views if admin panel is separate web-based only, expose APIs for it.
+
+20. Reporting Requirements
+Allow admin to generate reports for:
+- Engagement.
+- Learning completion.
+- Topic difficulty.
+- Content usage.
+- User growth.
+- Test performance.
+- Contributor activity if enabled.
+
+21. Data Quality Rules
+- Store timestamps consistently.
+- Normalize event names.
+- Ensure user and test IDs are valid.
+- Prevent duplicate counting where required.
+- Separate raw events from computed metrics.
+
+22. Privacy and Safety
+- Do not expose private user data in public analytics.
+- Restrict admin metrics to authorized roles.
+- Keep analytics logs secure.
+- Allow deletion or anonymization if required by policy later.
+
+23. Analytics Success Criteria
+This phase is successful if:
+- Students can clearly see how they are improving.
+- Admins can understand platform usage.
+- Weak areas are surfaced reliably.
+- Metrics are fast and trustworthy.
+- Analytics supports future personalization.
+
+24. Phase 3 Summary
+The analytics layer should make ExamFlow more useful to students and more manageable for the team by turning activity into clear learning insights.

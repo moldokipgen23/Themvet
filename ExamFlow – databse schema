@@ -1,0 +1,486 @@
+04_ExamFlow_Database_Schema.txt
+
+ExamFlow Database Schema
+
+1. Database Goals
+The database should support user accounts, exam structures, learning content, question banks, test attempts, community contributions, analytics, notifications, and future AI features.
+
+The schema must be normalized enough to stay maintainable, but practical enough for fast product development.
+
+2. Core Design Principles
+- Use MySQL 8.x or equivalent relational database.
+- Separate content entities from user activity entities.
+- Store analytics-friendly timestamps and status fields.
+- Support soft deletes where needed.
+- Use foreign keys carefully for integrity.
+- Keep enums and lookup tables simple and readable.
+- Design for future multi-exam expansion.
+
+3. Main Entity Groups
+- Users and profiles.
+- Exams and syllabus.
+- Learning content.
+- Questions and answers.
+- Tests and attempts.
+- Bookmarks and notes.
+- Community submissions.
+- Moderation workflows.
+- Analytics events.
+- Notifications and messages.
+- AI interaction logs.
+
+4. Users Table
+Purpose:
+Stores user identity and account information.
+
+Suggested fields:
+- id.
+- name.
+- email.
+- phone.
+- password_hash.
+- role.
+- status.
+- preferred_language.
+- current_exam_id.
+- created_at.
+- updated_at.
+- deleted_at.
+
+Notes:
+- role can be student, contributor, reviewer, admin, or super_admin.
+- status can be active, blocked, pending, or deleted.
+
+5. User Profiles Table
+Purpose:
+Stores extended user data.
+
+Suggested fields:
+- id.
+- user_id.
+- date_of_birth.
+- gender.
+- location.
+- education_level.
+- target_exam_level.
+- study_goal.
+- avatar_url.
+- bio.
+- created_at.
+- updated_at.
+
+6. Exams Table
+Purpose:
+Stores supported exam categories.
+
+Suggested fields:
+- id.
+- name.
+- slug.
+- description.
+- status.
+- created_at.
+- updated_at.
+
+Examples:
+- UPSC.
+- SSC.
+- Banking.
+- Railway.
+- State PSC.
+- NDA.
+
+7. Subjects Table
+Purpose:
+Stores subjects within an exam.
+
+Suggested fields:
+- id.
+- exam_id.
+- name.
+- slug.
+- display_order.
+- status.
+- created_at.
+- updated_at.
+
+8. Chapters Table
+Purpose:
+Stores major learning sections.
+
+Suggested fields:
+- id.
+- subject_id.
+- name.
+- slug.
+- display_order.
+- status.
+- created_at.
+- updated_at.
+
+9. Topics Table
+Purpose:
+Stores atomic learning units.
+
+Suggested fields:
+- id.
+- chapter_id.
+- name.
+- slug.
+- summary.
+- difficulty_level.
+- display_order.
+- status.
+- created_at.
+- updated_at.
+
+10. Learning Contents Table
+Purpose:
+Stores textbook-style study pages, notes, and explanations.
+
+Suggested fields:
+- id.
+- topic_id.
+- title.
+- content_type.
+- body.
+- short_summary.
+- source_type.
+- source_reference.
+- language.
+- status.
+- created_by.
+- reviewed_by.
+- published_at.
+- created_at.
+- updated_at.
+
+Content types:
+- note.
+- explanation.
+- summary.
+- formula.
+- diagram_text.
+- revision_sheet.
+
+11. Questions Table
+Purpose:
+Stores question bank items.
+
+Suggested fields:
+- id.
+- exam_id.
+- subject_id.
+- chapter_id.
+- topic_id.
+- question_type.
+- difficulty_level.
+- question_text.
+- option_a.
+- option_b.
+- option_c.
+- option_d.
+- correct_option.
+- explanation.
+- source_type.
+- source_reference.
+- language.
+- status.
+- created_by.
+- reviewed_by.
+- published_at.
+- created_at.
+- updated_at.
+
+12. Question Tags Table
+Purpose:
+Stores searchable tags for questions.
+
+Suggested fields:
+- id.
+- question_id.
+- tag_name.
+- created_at.
+
+13. Tests Table
+Purpose:
+Stores mock test definitions.
+
+Suggested fields:
+- id.
+- exam_id.
+- subject_id.
+- title.
+- description.
+- test_type.
+- duration_minutes.
+- total_questions.
+- status.
+- created_by.
+- created_at.
+- updated_at.
+
+Test types:
+- topic_quiz.
+- subject_test.
+- full_mock.
+- previous_year_paper.
+- custom_test.
+
+14. Test Questions Table
+Purpose:
+Maps questions to tests.
+
+Suggested fields:
+- id.
+- test_id.
+- question_id.
+- sequence_number.
+- marks.
+- negative_marks.
+- created_at.
+
+15. Test Attempts Table
+Purpose:
+Stores a user’s test attempt.
+
+Suggested fields:
+- id.
+- user_id.
+- test_id.
+- started_at.
+- submitted_at.
+- time_taken_seconds.
+- total_questions.
+- attempted_questions.
+- correct_answers.
+- wrong_answers.
+- skipped_questions.
+- score.
+- percentage.
+- result_status.
+- created_at.
+- updated_at.
+
+16. Test Attempt Answers Table
+Purpose:
+Stores per-question attempt details.
+
+Suggested fields:
+- id.
+- attempt_id.
+- question_id.
+- selected_option.
+- is_correct.
+- marks_awarded.
+- time_spent_seconds.
+- created_at.
+
+17. Bookmarks Table
+Purpose:
+Stores saved learning items.
+
+Suggested fields:
+- id.
+- user_id.
+- content_type.
+- content_id.
+- note.
+- created_at.
+- updated_at.
+
+18. Notes Table
+Purpose:
+Stores user notes and highlights.
+
+Suggested fields:
+- id.
+- user_id.
+- topic_id.
+- title.
+- body.
+- is_private.
+- created_at.
+- updated_at.
+
+19. Community Submissions Table
+Purpose:
+Stores user-contributed content awaiting review.
+
+Suggested fields:
+- id.
+- user_id.
+- submission_type.
+- target_type.
+- target_id.
+- title.
+- content_body.
+- status.
+- submitted_at.
+- reviewed_by.
+- reviewed_at.
+- review_comment.
+- created_at.
+- updated_at.
+
+Submission types:
+- question.
+- note.
+- explanation.
+- correction.
+- image_upload.
+
+20. Moderation Logs Table
+Purpose:
+Tracks approval history and changes.
+
+Suggested fields:
+- id.
+- submission_id.
+- reviewer_id.
+- action_type.
+- old_status.
+- new_status.
+- comment.
+- created_at.
+
+21. Progress Table
+Purpose:
+Stores learning completion state.
+
+Suggested fields:
+- id.
+- user_id.
+- topic_id.
+- status.
+- completion_percentage.
+- last_viewed_at.
+- completed_at.
+- created_at.
+- updated_at.
+
+22. Analytics Events Table
+Purpose:
+Stores raw user activity events.
+
+Suggested fields:
+- id.
+- user_id.
+- event_name.
+- event_category.
+- entity_type.
+- entity_id.
+- metadata_json.
+- occurred_at.
+- created_at.
+
+Examples:
+- topic_viewed.
+- question_answered.
+- test_started.
+- test_submitted.
+- bookmark_added.
+- content_shared.
+
+23. Notifications Table
+Purpose:
+Stores in-app and push notifications.
+
+Suggested fields:
+- id.
+- user_id.
+- title.
+- message.
+- notification_type.
+- read_at.
+- sent_at.
+- created_at.
+- updated_at.
+
+24. AI Interaction Logs Table
+Purpose:
+Stores AI requests and responses for debugging and improvement.
+
+Suggested fields:
+- id.
+- user_id.
+- prompt_type.
+- input_text.
+- response_text.
+- context_reference.
+- safety_status.
+- token_usage.
+- created_at.
+
+25. Search Index Support
+Search should index:
+- exam names.
+- subject names.
+- chapter names.
+- topic names.
+- question text.
+- explanations.
+- learning content titles.
+
+Recommended approach:
+- Keep a search index table or external search engine.
+- Rebuild indexes asynchronously via queue jobs.
+
+26. File Storage Tables
+If needed, store metadata for uploaded assets.
+
+Suggested fields:
+- id.
+- user_id.
+- file_name.
+- file_path.
+- file_type.
+- file_size.
+- mime_type.
+- linked_entity_type.
+- linked_entity_id.
+- created_at.
+
+27. Recommended Relationships
+- One exam has many subjects.
+- One subject has many chapters.
+- One chapter has many topics.
+- One topic has many learning contents.
+- One topic has many questions.
+- One test has many questions.
+- One test attempt has many answers.
+- One user has many bookmarks, notes, attempts, and submissions.
+- One submission has many moderation logs.
+
+28. Indexing Recommendations
+Add indexes on:
+- user_id.
+- exam_id.
+- subject_id.
+- chapter_id.
+- topic_id.
+- status.
+- created_at.
+- published_at.
+- event_name.
+- notification read state.
+
+29. Migration Strategy
+- Start with core tables first.
+- Add analytics and AI tables later.
+- Use seeders for base exams, subjects, and chapters.
+- Keep schema version-controlled.
+- Avoid destructive migrations in production without backups.
+
+30. Future Extensions
+- Multi-language content tables.
+- Subscription and billing tables.
+- Coupon and referral tables.
+- Instructor and class management tables.
+- Offline sync tables.
+- Adaptive learning recommendation tables.
+
+31. Schema Summary
+The schema should support a scalable exam prep product by separating study content, user progress, test mechanics, community workflows, and analytics into clear relational structures.
+
+End of file.

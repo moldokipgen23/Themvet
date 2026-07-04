@@ -1,0 +1,96 @@
+@extends('layouts.admin')
+
+@section('title', 'Dashboard - ThemVet Admin')
+
+@section('content')
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stat-card primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Total Users</h6>
+                        <h3>{{ $stats['total_users'] ?? 0 }}</h3>
+                    </div>
+                    <i class="fas fa-users fa-2x text-primary opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Total Questions</h6>
+                        <h3>{{ $stats['total_questions'] ?? 0 }}</h3>
+                    </div>
+                    <i class="fas fa-question-circle fa-2x text-success opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Pending Review</h6>
+                        <h3>{{ $stats['pending_questions'] ?? 0 }}</h3>
+                    </div>
+                    <i class="fas fa-clock fa-2x text-warning opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stat-card danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Total Attempts</h6>
+                        <h3>{{ $stats['total_attempts'] ?? 0 }}</h3>
+                    </div>
+                    <i class="fas fa-clipboard-check fa-2x text-danger opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <a href="{{ route('admin.users.index') }}" class="btn btn-outline-primary me-2 mb-2">
+                    <i class="fas fa-users"></i> Manage Users
+                </a>
+                <a href="{{ route('admin.exams.index') }}" class="btn btn-outline-success me-2 mb-2">
+                    <i class="fas fa-book"></i> Manage Exams
+                </a>
+                <a href="{{ route('admin.questions.index') }}" class="btn btn-outline-warning me-2 mb-2">
+                    <i class="fas fa-question-circle"></i> Manage Questions
+                </a>
+                <a href="{{ route('admin.mock-tests.index') }}" class="btn btn-outline-info me-2 mb-2">
+                    <i class="fas fa-clipboard-list"></i> Manage Mock Tests
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Activity</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">No recent activity to display.</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
