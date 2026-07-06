@@ -113,12 +113,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Wrap(
               spacing: 8,
               children: _user?.roles?.map((role) {
-                final groupColors = {
-                  'system': Colors.red,
+                final colors = {
+                  'admin': Colors.red,
                   'teacher': Colors.green,
                   'student': Colors.blue,
                 };
-                final color = groupColors[role.group] ?? Colors.grey;
+                final color = colors[role.name] ?? Colors.grey;
                 return Chip(
                   label: Text(role.name.toUpperCase(), style: const TextStyle(fontSize: 10)),
                   backgroundColor: color.withOpacity(0.1),
