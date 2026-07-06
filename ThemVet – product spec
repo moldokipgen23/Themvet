@@ -1,0 +1,177 @@
+02_ThemVet_Product_Spec.txt
+
+ThemVet Product Specification
+
+1. Product Overview
+ThemVet is a mobile-first and web-enabled exam preparation platform for Indian competitive exams. It combines structured textbook-style learning, test practice, community contributions, performance analytics, and AI-assisted support.
+
+The product should feel like a complete study system, not just a test app. Students should be able to learn concepts, revise topics, attempt tests, track progress, and prepare for exams in one place.
+
+2. Product Goals
+- Help students prepare efficiently for competitive exams.
+- Combine learning content, mock tests, and revision tools in one app.
+- Support syllabus-based and topic-based study flows.
+- Enable community-powered content contribution with moderation.
+- Provide analytics that improve retention and outcomes.
+- Create a scalable foundation for AI features later.
+
+3. Target Users
+Primary users:
+- Students preparing for UPSC.
+- Students preparing for SSC, banking, railway, and state exams.
+- Students who want structured self-study.
+- Students who prefer digital notes and mock tests.
+
+Secondary users:
+- Teachers and content creators.
+- Moderators and reviewers.
+- Admin and operations team.
+
+4. Core Product Principles
+- Simplicity first.
+- Mobile-first design.
+- High trust in content quality.
+- Fast navigation between study, practice, and review.
+- Personalized learning without overwhelming the user.
+- Build for long-term content scalability.
+
+5. Main User Journeys
+A. Student onboarding
+- User signs up.
+- Selects target exam.
+- Selects language preference.
+- Selects preparation level.
+- App recommends syllabus path.
+
+B. Study journey
+- User opens a subject.
+- Sees chapters and topics.
+- Reads textbook-style notes.
+- Saves highlights and bookmarks.
+- Marks topics as completed.
+
+C. Practice journey
+- User attempts topic quiz or mock test.
+- Receives score and explanation.
+- Reviews weak areas.
+- Repeats practice later.
+
+D. Revision journey
+- User reviews saved notes.
+- Uses flashcards or short summaries.
+- Revisits incorrect questions.
+- Tracks revision streaks.
+
+E. Community journey
+- User submits question, note, or explanation.
+- Content goes to moderation.
+- Approved content appears in library.
+- Best contributors gain reputation.
+
+6. Feature Scope: MVP
+The MVP should include:
+- User registration and login.
+- Exam selection.
+- Syllabus and topic structure.
+- Textbook-style learning pages.
+- Question bank with explanations.
+- Basic mock tests.
+- Progress tracking.
+- Bookmarks and saved notes.
+- Search across topics and questions.
+- Admin panel for content management.
+
+7. Feature Scope: Phase 2
+- Community uploads.
+- Contributor profiles.
+- Review and approval workflow.
+- Personalized recommendations.
+- Advanced test analytics.
+- Offline reading mode.
+- Multi-language support.
+- Notifications and reminders.
+
+8. Feature Scope: Phase 3
+- AI-generated study assistance.
+- Smart answer explanations.
+- Adaptive practice suggestions.
+- Weak-area detection.
+- Auto-generated revision plans.
+- Intelligent search and summarization.
+
+9. Content Types
+The platform should support:
+- Chapters.
+- Topics.
+- Notes.
+- Definitions.
+- Diagrams or images.
+- Practice questions.
+- Explanations.
+- Mock tests.
+- Previous year questions.
+- Revision summaries.
+- Flashcards.
+
+10. Navigation Structure
+Primary tabs:
+- Home.
+- Learn.
+- Practice.
+- Revision.
+- Profile.
+
+Secondary navigation:
+- Subjects.
+- Chapters.
+- Tests.
+- Bookmarks.
+- Search.
+- Analytics.
+- Community.
+
+11. Success Metrics
+- Daily active users.
+- Weekly retention.
+- Study completion rate.
+- Mock test attempts.
+- Average session length.
+- Bookmark usage.
+- Content contribution volume.
+- Premium conversion rate.
+
+12. Design Requirements
+- Clean, textbook-like reading UI.
+- Minimal distractions.
+- High readability on mobile screens.
+- Strong typographic hierarchy.
+- Clear progress indicators.
+- Accessible color contrast.
+- Support for Hindi and English in future versions.
+
+13. Business Relevance
+The product should be designed so the learning layer can later support:
+- Premium subscriptions.
+- Test series sales.
+- AI tutor features.
+- Institutional licensing.
+- Teacher and coaching partnerships.
+
+14. Product Constraints
+- Avoid clutter in early versions.
+- Do not launch too many exams at once.
+- Do not rely on AI before core content is stable.
+- Keep moderation workflows simple and enforceable.
+- Ensure performance on low-cost Android devices.
+
+15. Recommended Launch Strategy
+- Start with one exam segment.
+- Build strong content depth before expansion.
+- Focus on retention and quality.
+- Add analytics before AI.
+- Expand into community and personalization after proving core usage.
+
+16. Product Summary
+ThemVet should be a high-trust, content-rich exam preparation platform built around structured learning, active practice, and long-term student retention.
+
+End of file.

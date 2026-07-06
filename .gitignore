@@ -13,28 +13,28 @@ npm-debug.log
 yarn-error.log
 
 # Flutter
-examflow_mobile/.dart_tool/
-examflow_mobile/.packages
-examflow_mobile/.pub/
-examflow_mobile/.pub-cache/
-examflow_mobile/build/
-examflow_mobile/.flutter-plugins
-examflow_mobile/.flutter-plugins-dependencies
-examflow_mobile/pubspec.lock
-examflow_mobile/.metadata
-examflow_mobile/android/.gradle/
-examflow_mobile/android/app/build/
-examflow_mobile/android/local.properties
-examflow_mobile/android/key.properties
-examflow_mobile/ios/Pods/
-examflow_mobile/ios/.symlinks/
-examflow_mobile/ios/Flutter/Flutter.framework
-examflow_mobile/ios/Flutter/Flutter.podspec
-examflow_mobile/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-examflow_mobile/linux/flutter/ephemeral/
-examflow_mobile/windows/flutter/ephemular/
-examflow_mobile/.idea/
-examflow_mobile/.vscode/
+themvet_mobile/.dart_tool/
+themvet_mobile/.packages
+themvet_mobile/.pub/
+themvet_mobile/.pub-cache/
+themvet_mobile/build/
+themvet_mobile/.flutter-plugins
+themvet_mobile/.flutter-plugins-dependencies
+themvet_mobile/pubspec.lock
+themvet_mobile/.metadata
+themvet_mobile/android/.gradle/
+themvet_mobile/android/app/build/
+themvet_mobile/android/local.properties
+themvet_mobile/android/key.properties
+themvet_mobile/ios/Pods/
+themvet_mobile/ios/.symlinks/
+themvet_mobile/ios/Flutter/Flutter.framework
+themvet_mobile/ios/Flutter/Flutter.podspec
+themvet_mobile/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+themvet_mobile/linux/flutter/ephemeral/
+themvet_mobile/windows/flutter/ephemular/
+themvet_mobile/.idea/
+themvet_mobile/.vscode/
 
 # IDE
 .idea/

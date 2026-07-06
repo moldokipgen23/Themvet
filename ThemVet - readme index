@@ -1,0 +1,76 @@
+00_ThemVet_README_Index.txt
+
+ThemVet Project Hand-off Index
+
+1. Purpose
+This folder contains the complete business, product, architecture, database, API, Flutter, admin, analytics, community, and AI build prompts for ThemVet.
+
+2. Project Summary
+ThemVet is a community-powered, AI-ready exam preparation platform for Indian competitive exams. It combines structured learning content, practice questions, mock tests, progress tracking, community contributions, analytics, and AI assistance.
+
+3. Recommended Reading Order
+1. 01_ThemVet_Business_Plan.txt
+2. 02_ThemVet_Product_Spec.txt
+3. 03_ThemVet_System_Architecture.txt
+4. 04_ThemVet_Database_Schema.txt
+5. 05_ThemVet_API_Spec.txt
+6. 06_ThemVet_Flutter_Architecture.txt
+7. 07_ThemVet_Admin_Panel_Spec.txt
+8. 08_ThemVet_Phase_1_MVP_Prompt.txt
+9. 09_ThemVet_Phase_2_Community_Prompt.txt
+10. 10_ThemVet_Phase_3_Analytics_Prompt.txt
+11. 11_ThemVet_Phase_4_AI_Prompt.txt
+12. 12_ThemVet_Phase_5_AI_Tutor_Prompt.txt
+13. 13_ThemVet_Claude_Code_Master_Instructions.txt
+
+4. Suggested Folder Structure
+ThemVet/
+- 00_ThemVet_README_Index.txt
+- 01_ThemVet_Business_Plan.txt
+- 02_ThemVet_Product_Spec.txt
+- 03_ThemVet_System_Architecture.txt
+- 04_ThemVet_Database_Schema.txt
+- 05_ThemVet_API_Spec.txt
+- 06_ThemVet_Flutter_Architecture.txt
+- 07_ThemVet_Admin_Panel_Spec.txt
+- 08_ThemVet_Phase_1_MVP_Prompt.txt
+- 09_ThemVet_Phase_2_Community_Prompt.txt
+- 10_ThemVet_Phase_3_Analytics_Prompt.txt
+- 11_ThemVet_Phase_4_AI_Prompt.txt
+- 12_ThemVet_Phase_5_AI_Tutor_Prompt.txt
+- 13_ThemVet_Claude_Code_Master_Instructions.txt
+
+5. Build Philosophy
+- Build in phases.
+- Validate the core learning loop before adding advanced features.
+- Keep the architecture modular.
+- Prefer clarity over complexity.
+- Keep the product focused on exam preparation and retention.
+
+6. Core Development Sequence
+1. Business and product clarity.
+2. Database and API foundation.
+3. Flutter app MVP.
+4. Admin panel MVP.
+5. Community features.
+6. Analytics layer.
+7. AI assistance.
+8. AI tutor.
+
+7. What This Package Is For
+- Handing off to Claude Code.
+- Handing off to another AI developer.
+- Planning implementation in a structured way.
+- Keeping the product aligned across business, product, and engineering.
+
+8. How To Use
+- Read this index first.
+- Then read the business plan.
+- Then follow the architecture, database, and API files.
+- Build one phase at a time using the phase prompts.
+- Use the master instructions file as the final build guide.
+
+9. Final Note
+This package is designed so each file has one clear job, making it easier for an AI developer to understand, execute, and extend the project.
+
+End of file.
