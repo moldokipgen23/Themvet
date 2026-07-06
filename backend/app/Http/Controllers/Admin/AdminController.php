@@ -38,9 +38,9 @@ class AdminController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $user = Auth::user();
 
-            if (! $user->isAdmin()) {
+            if (! $user->is_active) {
                 Auth::logout();
-                return back()->withErrors(['email' => 'You do not have admin access.']);
+                return back()->withErrors(['email' => 'Your account is inactive.']);
             }
 
             $request->session()->regenerate();
@@ -64,12 +64,30 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $stats = [
-            'total_users' => User::count(),
-            'total_questions' => Question::count(),
-            'pending_questions' => Question::where('status', 'pending')->count(),
-            'total_attempts' => \App\Models\Attempt::count(),
-        ];
+        $user = Auth::user();
+
+        if ($user->isAdmin()) {
+            $stats = [
+                'total_users' => User::count(),
+                'total_questions' => Question::count(),
+                'pending_questions' => Question::where('status', 'pending')->count(),
+                'total_attempts' => \App\Models\Attempt::count(),
+            ];
+        } elseif ($user->isTeacher()) {
+            $stats = [
+                'my_questions' => Question::where('contributor_id', $user->id)->count(),
+                'approved_questions' => Question::where('contributor_id', $user->id)->where('status', 'approved')->count(),
+                'pending_questions' => Question::where('status', 'pending')->count(),
+                'total_mock_tests' => MockTest::count(),
+            ];
+        } else {
+            $stats = [
+                'total_exams' => \App\Models\Exam::count(),
+                'total_mock_tests' => MockTest::where('status', 'published')->count(),
+                'total_questions' => Question::where('status', 'approved')->count(),
+                'my_attempts' => \App\Models\Attempt::where('user_id', $user->id)->count(),
+            ];
+        }
 
         return view('admin.dashboard', compact('stats'));
     }

@@ -144,52 +144,91 @@
             <i class="fas fa-graduation-cap"></i> ThemVet
         </div>
         <nav>
-            <div class="nav-section">Main</div>
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
-            </a>
-            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                <i class="fas fa-users"></i> Users
-            </a>
+            {{-- ADMIN SIDEBAR --}}
+            @if(Auth::user()->isAdmin())
+                <div class="nav-section">Main</div>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                    <i class="fas fa-users"></i> Users
+                </a>
 
-            <div class="nav-section">Content</div>
-            <a href="{{ route('admin.exams.index') }}" class="{{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
-                <i class="fas fa-book"></i> Exams
-            </a>
-            <a href="{{ route('admin.subjects.index') }}" class="{{ request()->routeIs('admin.subjects*') ? 'active' : '' }}">
-                <i class="fas fa-layer-group"></i> Subjects
-            </a>
-            <a href="{{ route('admin.topics.index') }}" class="{{ request()->routeIs('admin.topics*') ? 'active' : '' }}">
-                <i class="fas fa-tags"></i> Topics
-            </a>
-            <a href="{{ route('admin.questions.index') }}" class="{{ request()->routeIs('admin.questions*') ? 'active' : '' }}">
-                <i class="fas fa-question-circle"></i> Questions
-            </a>
+                <div class="nav-section">Content</div>
+                <a href="{{ route('admin.exams.index') }}" class="{{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
+                    <i class="fas fa-book"></i> Exams
+                </a>
+                <a href="{{ route('admin.subjects.index') }}" class="{{ request()->routeIs('admin.subjects*') ? 'active' : '' }}">
+                    <i class="fas fa-layer-group"></i> Subjects
+                </a>
+                <a href="{{ route('admin.topics.index') }}" class="{{ request()->routeIs('admin.topics*') ? 'active' : '' }}">
+                    <i class="fas fa-tags"></i> Topics
+                </a>
+                <a href="{{ route('admin.questions.index') }}" class="{{ request()->routeIs('admin.questions*') ? 'active' : '' }}">
+                    <i class="fas fa-question-circle"></i> Questions
+                </a>
 
-            <div class="nav-section">Tests</div>
-            <a href="{{ route('admin.mock-tests.index') }}" class="{{ request()->routeIs('admin.mock-tests*') ? 'active' : '' }}">
-                <i class="fas fa-clipboard-list"></i> Mock Tests
-            </a>
-            <a href="{{ route('admin.review-queue') }}" class="{{ request()->routeIs('admin.review-queue') ? 'active' : '' }}">
-                <i class="fas fa-clipboard-check"></i> Review Queue
-            </a>
+                <div class="nav-section">Tests</div>
+                <a href="{{ route('admin.mock-tests.index') }}" class="{{ request()->routeIs('admin.mock-tests*') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-list"></i> Mock Tests
+                </a>
+                <a href="{{ route('admin.review-queue') }}" class="{{ request()->routeIs('admin.review-queue') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-check"></i> Review Queue
+                </a>
 
-            <div class="nav-section">Management</div>
-            <a href="{{ route('admin.reviewer-assignments.index') }}" class="{{ request()->routeIs('admin.reviewer-assignments.*') ? 'active' : '' }}">
-                <i class="fas fa-user-tag"></i> Reviewers
-            </a>
-            <a href="{{ route('admin.analytics') }}" class="{{ request()->routeIs('admin.analytics') ? 'active' : '' }}">
-                <i class="fas fa-chart-bar"></i> Analytics
-            </a>
-            <a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
-                <i class="fas fa-user-shield"></i> Roles
-            </a>
-            <a href="{{ route('admin.notifications.index') }}" class="{{ request()->routeIs('admin.notifications*') ? 'active' : '' }}">
-                <i class="fas fa-bell"></i> Notifications
-            </a>
-            <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                <i class="fas fa-cog"></i> Settings
-            </a>
+                <div class="nav-section">Management</div>
+                <a href="{{ route('admin.reviewer-assignments.index') }}" class="{{ request()->routeIs('admin.reviewer-assignments.*') ? 'active' : '' }}">
+                    <i class="fas fa-user-tag"></i> Reviewers
+                </a>
+                <a href="{{ route('admin.analytics') }}" class="{{ request()->routeIs('admin.analytics') ? 'active' : '' }}">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+                <a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
+                    <i class="fas fa-user-shield"></i> Roles
+                </a>
+                <a href="{{ route('admin.notifications.index') }}" class="{{ request()->routeIs('admin.notifications*') ? 'active' : '' }}">
+                    <i class="fas fa-bell"></i> Notifications
+                </a>
+                <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+
+            {{-- TEACHER SIDEBAR --}}
+            @elseif(Auth::user()->isTeacher())
+                <div class="nav-section">Main</div>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+
+                <div class="nav-section">Content</div>
+                <a href="{{ route('admin.questions.index') }}" class="{{ request()->routeIs('admin.questions*') ? 'active' : '' }}">
+                    <i class="fas fa-question-circle"></i> Questions
+                </a>
+
+                <div class="nav-section">Tests</div>
+                <a href="{{ route('admin.mock-tests.index') }}" class="{{ request()->routeIs('admin.mock-tests*') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-list"></i> Mock Tests
+                </a>
+                <a href="{{ route('admin.review-queue') }}" class="{{ request()->routeIs('admin.review-queue') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-check"></i> Review Queue
+                </a>
+
+            {{-- STUDENT SIDEBAR --}}
+            @else
+                <div class="nav-section">Main</div>
+                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+
+                <div class="nav-section">Content</div>
+                <a href="{{ route('admin.exams.index') }}" class="{{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
+                    <i class="fas fa-book"></i> Exams
+                </a>
+                <a href="{{ route('admin.mock-tests.index') }}" class="{{ request()->routeIs('admin.mock-tests*') ? 'active' : '' }}">
+                    <i class="fas fa-clipboard-list"></i> Mock Tests
+                </a>
+            @endif
+
             <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px;">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
