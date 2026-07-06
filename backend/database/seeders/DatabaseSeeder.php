@@ -35,12 +35,9 @@ class DatabaseSeeder extends Seeder
     private function seedRoles(): void
     {
         $roles = [
-            ['name' => 'admin', 'group' => 'system', 'description' => 'Full platform management and settings'],
-            ['name' => 'moderator', 'group' => 'system', 'description' => 'Content moderation, user reports, light admin'],
-            ['name' => 'teacher', 'group' => 'teacher', 'description' => 'Create questions, submit test drafts, view contributions'],
-            ['name' => 'reviewer', 'group' => 'teacher', 'description' => 'Review, approve or reject submitted questions'],
-            ['name' => 'lead_reviewer', 'group' => 'teacher', 'description' => 'Senior reviewer, create official tests, override decisions'],
-            ['name' => 'student', 'group' => 'student', 'description' => 'Take mock tests, practice questions, compete on leaderboards'],
+            ['name' => 'admin', 'description' => 'Full platform management and settings'],
+            ['name' => 'teacher', 'description' => 'Create questions, review content, manage tests'],
+            ['name' => 'student', 'description' => 'Take mock tests, practice questions, compete on leaderboards'],
         ];
 
         foreach ($roles as $role) {
@@ -50,34 +47,23 @@ class DatabaseSeeder extends Seeder
 
     private function seedUsers(): void
     {
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@themvet.com',
-            'password' => Hash::make('password'),
-        ]);
-        $admin->roles()->attach(Role::where('name', 'admin')->first());
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@themvet.com'],
+            ['name' => 'Admin', 'password' => Hash::make('password'), 'is_active' => true]
+        );
+        $admin->roles()->syncWithoutDetaching([Role::where('name', 'admin')->first()->id]);
 
-        $student = User::create([
-            'name' => 'Test Student',
-            'email' => 'student@themvet.com',
-            'password' => Hash::make('password'),
-            'target_exam_id' => Exam::where('slug', 'ssc')->first()->id,
-        ]);
-        $student->roles()->attach(Role::where('name', 'student')->first());
+        $student = User::firstOrCreate(
+            ['email' => 'student@themvet.com'],
+            ['name' => 'Test Student', 'password' => Hash::make('password'), 'is_active' => true, 'target_exam_id' => Exam::where('slug', 'ssc')->first()->id ?? null]
+        );
+        $student->roles()->syncWithoutDetaching([Role::where('name', 'student')->first()->id]);
 
-        $teacher = User::create([
-            'name' => 'Test Teacher',
-            'email' => 'contributor@themvet.com',
-            'password' => Hash::make('password'),
-        ]);
-        $teacher->roles()->attach(Role::where('name', 'teacher')->first());
-
-        $reviewer = User::create([
-            'name' => 'Test Reviewer',
-            'email' => 'reviewer@themvet.com',
-            'password' => Hash::make('password'),
-        ]);
-        $reviewer->roles()->attach(Role::where('name', 'reviewer')->first());
+        $teacher = User::firstOrCreate(
+            ['email' => 'teacher@themvet.com'],
+            ['name' => 'Test Teacher', 'password' => Hash::make('password'), 'is_active' => true]
+        );
+        $teacher->roles()->syncWithoutDetaching([Role::where('name', 'teacher')->first()->id]);
     }
 
     private function seedBadges(): void

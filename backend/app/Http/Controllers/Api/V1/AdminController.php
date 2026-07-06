@@ -23,7 +23,6 @@ class AdminController extends Controller
             'total_users' => User::count(),
             'total_students' => User::whereHas('roles', fn($q) => $q->where('name', 'student'))->count(),
             'total_contributors' => User::whereHas('roles', fn($q) => $q->where('name', 'teacher'))->count(),
-            'total_reviewers' => User::whereHas('roles', fn($q) => $q->whereIn('name', ['reviewer', 'lead_reviewer']))->count(),
             'total_exams' => Exam::count(),
             'total_subjects' => Subject::count(),
             'total_topics' => Topic::count(),
@@ -66,7 +65,7 @@ class AdminController extends Controller
     public function assignRole(Request $request, $userId)
     {
         $request->validate([
-            'role' => 'required|in:student,teacher,reviewer,lead_reviewer,admin,moderator',
+            'role' => 'required|in:student,teacher,admin',
         ]);
 
         $user = User::findOrFail($userId);
@@ -264,7 +263,7 @@ class AdminController extends Controller
         $request->validate([
             'exam_id' => 'required|exists:exams,id',
             'subject_id' => 'sometimes|exists:subjects,id',
-            'level' => 'sometimes|in:reviewer,lead_reviewer',
+            'level' => 'sometimes|string|in:reviewer',
         ]);
 
         $user = User::findOrFail($userId);

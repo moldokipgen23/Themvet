@@ -17,10 +17,6 @@ class QuestionPolicy
             return true;
         }
 
-        if ($user->isReviewer()) {
-            return true;
-        }
-
         return false;
     }
 
@@ -32,17 +28,6 @@ class QuestionPolicy
 
         if ($user->isTeacher() && $question->contributor_id === $user->id) {
             return true;
-        }
-
-        if ($user->isReviewer()) {
-            return $user->reviewerAssignments()
-                ->active()
-                ->where('exam_id', $question->exam_id)
-                ->where(function ($q) use ($question) {
-                    $q->where('subject_id', $question->subject_id)
-                      ->orWhereNull('subject_id');
-                })
-                ->exists();
         }
 
         return false;
@@ -81,33 +66,11 @@ class QuestionPolicy
 
     public function approve(User $user, Question $question)
     {
-        if (! $user->isReviewer()) {
-            return false;
-        }
-
-        return $user->reviewerAssignments()
-            ->active()
-            ->where('exam_id', $question->exam_id)
-            ->where(function ($q) use ($question) {
-                $q->where('subject_id', $question->subject_id)
-                  ->orWhereNull('subject_id');
-            })
-            ->exists();
+        return $user->isTeacher();
     }
 
     public function reject(User $user, Question $question)
     {
-        if (! $user->isReviewer()) {
-            return false;
-        }
-
-        return $user->reviewerAssignments()
-            ->active()
-            ->where('exam_id', $question->exam_id)
-            ->where(function ($q) use ($question) {
-                $q->where('subject_id', $question->subject_id)
-                  ->orWhereNull('subject_id');
-            })
-            ->exists();
+        return $user->isTeacher();
     }
 }

@@ -40,8 +40,8 @@
                         <td>{{ $assignment->exam->name ?? 'N/A' }}</td>
                         <td>{{ $assignment->subject->name ?? 'All Subjects' }}</td>
                         <td>
-                            <span class="badge bg-{{ $assignment->level === 'lead_reviewer' ? 'info' : 'primary' }}">
-                                {{ ucfirst(str_replace('_', ' ', $assignment->level)) }}
+                            <span class="badge bg-primary">
+                                {{ ucfirst($assignment->level) }}
                             </span>
                         </td>
                         <td>
@@ -90,7 +90,7 @@
                         <label for="user_id" class="form-label">Reviewer <span class="text-danger">*</span></label>
                         <select name="user_id" id="user_id" class="form-select" required>
                             <option value="">Select Reviewer</option>
-                            @foreach(\App\Models\User::whereHas('roles', function($q) { $q->whereIn('name', ['reviewer', 'lead_reviewer']); })->get() as $reviewer)
+                            @foreach(\App\Models\User::whereHas('roles', function($q) { $q->where('name', 'teacher'); })->get() as $reviewer)
                                 <option value="{{ $reviewer->id }}">{{ $reviewer->name }} ({{ $reviewer->email }})</option>
                             @endforeach
                         </select>
@@ -114,7 +114,6 @@
                         <label for="level" class="form-label">Level <span class="text-danger">*</span></label>
                         <select name="level" id="level" class="form-select" required>
                             <option value="reviewer">Reviewer</option>
-                            <option value="lead_reviewer">Lead Reviewer</option>
                         </select>
                     </div>
                 </div>

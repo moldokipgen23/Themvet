@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  bool get _hasExtraRoles => _user?.isTeacher == true || _user?.isReviewer == true;
+  bool get _hasExtraRoles => _user?.isTeacher == true;
 
   List<Widget> get _tabs {
     final tabs = <Widget>[
@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.pushNamed(context, AppRoutes.myContributions);
                 },
               ),
-            if (_user?.isReviewer == true)
+            if (_user?.isTeacher == true)
               ListTile(
                 leading: const Icon(Icons.rate_review, color: Colors.orange),
                 title: const Text('Review Queue'),
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
-    if (_user?.isSystemUser == true) {
+    if (_user?.isAdmin == true) {
       return Scaffold(
         appBar: AppBar(title: const Text('ThemVet')),
         body: Center(
@@ -272,12 +272,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: _user?.roles?.map((role) {
                         final colors = {
                           'student': Colors.blue,
-                          'contributor': Colors.green,
                           'teacher': Colors.green,
-                          'reviewer': Colors.orange,
-                          'lead_reviewer': Colors.purple,
                           'admin': Colors.red,
-                          'moderator': Colors.amber,
                         };
                         return Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -306,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
           sliver: SliverList(
             delegate: SliverChildListDelegate([
               // Role Banner
-              if (_user?.isTeacher == true || _user?.isReviewer == true)
+              if (_user?.isTeacher == true)
                 _buildRoleBanner(),
               const SizedBox(height: 16),
 
@@ -329,10 +325,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildRoleBanner() {
-    final roles = <String>[];
-    if (_user?.isTeacher == true) roles.add('Creator');
-    if (_user?.isReviewer == true) roles.add('Reviewer');
-
     return Card(
       color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
       child: Padding(
@@ -345,12 +337,12 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Extra Powers: ${roles.join(" + ")}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  const Text(
+                    'Teacher Mode',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'You can ${_user?.isTeacher == true ? "create questions" : ""}${_user?.isTeacher == true && _user?.isReviewer == true ? " and " : ""}${_user?.isReviewer == true ? "review questions" : ""}!',
+                    'You can create questions, review content, and publish tests!',
                     style: TextStyle(color: Colors.grey[600], fontSize: 12),
                   ),
                 ],
@@ -391,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.green,
             onTap: () => Navigator.pushNamed(context, AppRoutes.createQuestion),
           ),
-        if (_user?.isReviewer == true)
+        if (_user?.isTeacher == true)
           _buildActionCard(
             icon: Icons.rate_review,
             title: 'Review Queue',

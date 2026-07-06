@@ -14,20 +14,16 @@ class MockTestPolicy
 
     public function create(User $user)
     {
-        return $user->isReviewer();
+        return $user->isTeacher();
     }
 
     public function update(User $user, MockTest $mockTest)
     {
-        if ($user->isLeadReviewer()) {
-            return true;
-        }
-
         return $mockTest->created_by === $user->id;
     }
 
     public function publish(User $user)
     {
-        return $user->isReviewer();
+        return $user->isTeacher();
     }
 }

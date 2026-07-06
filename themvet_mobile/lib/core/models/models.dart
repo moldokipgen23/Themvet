@@ -40,33 +40,23 @@ class User {
     return roles?.any((r) => r.name == roleName) ?? false;
   }
 
-  bool hasGroup(String group) {
-    return roles?.any((r) => r.group == group) ?? false;
-  }
-
   bool get isAdmin => hasRole('admin');
-  bool get isModerator => hasRole('moderator');
-  bool get isSystemUser => hasGroup('system');
-  bool get isTeacher => hasGroup('teacher');
-  bool get isContributor => isTeacher;
-  bool get isReviewer => hasRole('reviewer') || hasRole('lead_reviewer');
-  bool get isStudent => hasGroup('student');
+  bool get isTeacher => hasRole('teacher');
+  bool get isStudent => hasRole('student');
 }
 
 class Role {
   final int id;
   final String name;
   final String? description;
-  final String group;
 
-  Role({required this.id, required this.name, this.description, this.group = 'student'});
+  Role({required this.id, required this.name, this.description});
 
   factory Role.fromJson(Map<String, dynamic> json) {
     return Role(
       id: json['id'],
       name: json['name'],
       description: json['description'],
-      group: json['group'] ?? 'student',
     );
   }
 }

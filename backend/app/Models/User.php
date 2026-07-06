@@ -89,48 +89,18 @@ class User extends Authenticatable
         return $this->roles->contains('name', $roleName);
     }
 
-    public function hasGroup($group)
-    {
-        return $this->roles->contains('group', $group);
-    }
-
     public function isAdmin()
     {
         return $this->hasRole('admin');
     }
 
-    public function isModerator()
-    {
-        return $this->hasRole('moderator');
-    }
-
-    public function isSystemUser()
-    {
-        return $this->hasGroup('system');
-    }
-
     public function isTeacher()
     {
-        return $this->hasGroup('teacher');
-    }
-
-    public function isContributor()
-    {
-        return $this->isTeacher();
-    }
-
-    public function isReviewer()
-    {
-        return $this->hasRole('reviewer') || $this->hasRole('lead_reviewer');
-    }
-
-    public function isLeadReviewer()
-    {
-        return $this->hasRole('lead_reviewer');
+        return $this->hasRole('teacher');
     }
 
     public function isStudent()
     {
-        return $this->hasGroup('student');
+        return $this->hasRole('student');
     }
 }

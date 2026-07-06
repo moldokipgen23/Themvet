@@ -43,7 +43,7 @@
                             @endforeach
                         </td>
                         <td>
-                            @if($user->isReviewer() && $user->reviewerAssignments->count() > 0)
+                            @if($user->isTeacher() && $user->reviewerAssignments->count() > 0)
                                 @foreach($user->reviewerAssignments->take(3) as $assignment)
                                     <span class="badge bg-light text-dark border">
                                         {{ $assignment->exam->name ?? 'N/A' }}
@@ -73,14 +73,11 @@
                                 <select name="role" class="form-select form-select-sm" style="width: auto; display: inline-block;" onchange="this.form.submit()">
                                     <option value="student" {{ $user->hasRole('student') ? 'selected' : '' }}>Student</option>
                                     <option value="teacher" {{ $user->hasRole('teacher') ? 'selected' : '' }}>Teacher</option>
-                                    <option value="reviewer" {{ $user->hasRole('reviewer') ? 'selected' : '' }}>Reviewer</option>
-                                    <option value="lead_reviewer" {{ $user->hasRole('lead_reviewer') ? 'selected' : '' }}>Lead Reviewer</option>
                                     <option value="admin" {{ $user->hasRole('admin') ? 'selected' : '' }}>Admin</option>
-                                    <option value="moderator" {{ $user->hasRole('moderator') ? 'selected' : '' }}>Moderator</option>
                                 </select>
                             </form>
 
-                            @if($user->isReviewer())
+                            @if($user->isTeacher())
                                 <button type="button" class="btn btn-sm btn-outline-primary ms-1"
                                         data-bs-toggle="modal" data-bs-target="#assignModal{{ $user->id }}">
                                     <i class="fas fa-link"></i> Assign
@@ -90,7 +87,7 @@
                     </tr>
 
                     <!-- Assign Reviewer Modal -->
-                    @if($user->isReviewer())
+                    @if($user->isTeacher())
                     <div class="modal fade" id="assignModal{{ $user->id }}" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -121,7 +118,6 @@
                                             <label for="level_{{ $user->id }}" class="form-label">Level <span class="text-danger">*</span></label>
                                             <select name="level" id="level_{{ $user->id }}" class="form-select" required>
                                                 <option value="reviewer">Reviewer</option>
-                                                <option value="lead_reviewer">Lead Reviewer</option>
                                             </select>
                                         </div>
                                     </div>

@@ -15,10 +15,10 @@ class ReviewerController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (!$request->user() || !$request->user()->isReviewer()) {
+            if (!$request->user() || !$request->user()->isTeacher()) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Unauthorized. Reviewer access required.',
+                    'message' => 'Unauthorized. Teacher access required.',
                 ], 403);
             }
             return $next($request);
@@ -335,7 +335,7 @@ class ReviewerController extends Controller
             'total_marks' => $validated['total_marks'],
             'negative_marking' => $validated['negative_marking'] ?? false,
             'negative_marking_value' => $validated['negative_marking_value'] ?? 0,
-            'is_official' => $request->user()->isLeadReviewer(),
+            'is_official' => $request->user()->isTeacher(),
             'created_by' => $request->user()->id,
             'status' => 'draft',
         ]);

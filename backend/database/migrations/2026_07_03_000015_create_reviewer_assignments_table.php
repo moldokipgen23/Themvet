@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('exam_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subject_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->enum('level', ['reviewer', 'lead_reviewer'])->default('reviewer');
+            $table->enum('level', ['reviewer'])->default('reviewer');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 

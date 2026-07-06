@@ -94,7 +94,7 @@ class AdminController extends Controller
         ]);
 
         $role = Role::where('name', $request->role)->firstOrFail();
-        $user->roles()->syncWithoutDetaching([$role->id]);
+        $user->roles()->sync([$role->id]);
 
         return back()->with('success', "Role '{$role->name}' assigned to {$user->name}.");
     }
@@ -435,7 +435,7 @@ class AdminController extends Controller
             'user_id' => 'required|exists:users,id',
             'exam_id' => 'required|exists:exams,id',
             'subject_id' => 'nullable|exists:subjects,id',
-            'level' => 'required|string|in:reviewer,lead_reviewer',
+            'level' => 'required|string|in:reviewer',
         ]);
 
         $exists = ReviewerAssignment::where('user_id', $request->user_id)
