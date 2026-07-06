@@ -7,7 +7,7 @@ use App\Models\Question;
 
 class QuestionPolicy
 {
-    public function viewAny(User $user, Question $question = null)
+    public function viewAny(User $user, ?Question $question = null)
     {
         if ($user->isAdmin()) {
             return true;
