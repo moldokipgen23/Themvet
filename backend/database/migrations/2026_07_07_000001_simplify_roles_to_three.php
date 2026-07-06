@@ -9,13 +9,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Remove extra roles (moderator, reviewer, lead_reviewer)
         DB::table('roles')->whereIn('name', ['moderator', 'reviewer', 'lead_reviewer'])->delete();
 
-        // Remove group column
-        Schema::table('roles', function (Blueprint $table) {
-            $table->dropColumn('group');
-        });
+        if (Schema::hasColumn('roles', 'group')) {
+            Schema::table('roles', function (Blueprint $table) {
+                $table->dropColumn('group');
+            });
+        }
     }
 
     public function down(): void
