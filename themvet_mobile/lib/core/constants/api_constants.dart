@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'http://localhost:8000/api');
+  static const String baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'https://themvet.ehlom.com/api');
   
   // Auth
   static const String register = '/auth/register';

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'ThemVet Admin')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -141,7 +143,7 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <i class="fas fa-graduation-cap"></i> ThemVet
+            <img src="{{ asset('logo.svg') }}" alt="ThemVet" style="height: 36px;">
         </div>
         <nav>
             {{-- ADMIN SIDEBAR --}}
