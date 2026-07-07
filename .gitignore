@@ -11,12 +11,6 @@ auth.json
 npm-debug.log
 yarn-error.log
 
-# Flutter (local only)
-themvet_mobile/
-
-# Docs (local only)
-docs/
-
 # IDE
 .idea/
 .vscode/
